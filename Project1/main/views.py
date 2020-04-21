@@ -6,8 +6,9 @@ from .models import ImgPlace, NamesPlace
 from django.contrib.auth.decorators import login_required
 
 def index(request):
-    context = {}
-    return render(request,"home.html",context)
+    names = NamesPlace.objects.all()
+    imges = ImgPlace.objects.all()
+    return render(request,"home.html", {'names':names, 'imges':imges})
 
 def login(request):
     context = {}
@@ -62,16 +63,17 @@ def logout(request):
 
 @login_required
 def place(request):
-    print("===================")
-    print(request.FILES)
-    im = request.FILES['image']
-    name = request.POST['place_name']
-    # user = request.user.username
-    print(im)
-    print(name)
-    # print(user)
-    places = NamesPlace(names=name)
-    places.save()
-    img_place = ImgPlace(img=im, place=name)
-    img_place.save()
-    return render(request, "home.html")
+    if request.method == "POST":
+        print("===================")
+        print(request.FILES)
+        im = request.FILES['image']
+        name = request.POST['place_name']
+        # user = request.user.username
+        # print(im)
+        # print(name.type())
+        # print(user.type())
+        places = NamesPlace(names=name)
+        # img_place = ImgPlace.objects.create(person=user, img=im, place=name)
+        places.save()
+        messages.info(request, "Data Saved Successfully!")
+    return redirect("/persius")
