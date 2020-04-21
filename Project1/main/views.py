@@ -17,12 +17,15 @@ def login(request):
         user = auth.authenticate(username=username,password=password)
         if user is not None:
             auth.login(request,user)
-            return redirect("/persius/")
+            return redirect("/persius")
         else:
             messages.info(request, "Incorrect! Username or Password!")
             return redirect("/persius/login")
     else:
-        return render(request,"login.html",context)
+        if request.user.is_authenticated:
+            return redirect("/persius")
+        else:
+            return render(request,"login.html",context)
 
 def signup(request):
     context = {}
@@ -48,7 +51,10 @@ def signup(request):
             messages.info(request, "Password Mismatched!")
             return HttpResponseRedirect(request.path_info)
     else:
-        return render(request,"signup.html",context)
+        if request.user.is_authenticated:
+            return redirect("/persius")
+        else:
+            return render(request,"signup.html",context)
 
 def logout(request):
     auth.logout(request)
