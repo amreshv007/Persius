@@ -21,7 +21,7 @@
 </div>
 <div class="home">
     {% if user.is_authenticated %}
-    <form method="POST" id="signup-form" class="signup-form" action="image_upload" enctype="multipart/form-data">
+    <form method="POST" id="signup-form" class="signup-form" action="image_upload">
         {% csrf_token %}
         <h2 class="form-title">Upload Image</h2>
         <div class="form-group">
@@ -48,9 +48,9 @@
     </div>
     <div class="col-xs-8 form-group">
         <h3>Images</h3>
-        {% for im in imges %}
-            <p><img src="{{im.img.url}}"></p>
-        {% endfor %}
+<!--        {% for im in imges %}-->
+<!--            <p><img src="{{im.img.url}}"></p>-->
+<!--        {% endfor %}-->
     </div>
 </div>
 </body>
