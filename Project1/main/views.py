@@ -31,9 +31,6 @@ def index(request):
             places = NamesPlace(names=name)
             places.save()
             messages.info(request, "Data Saved Successfully!")
-        else:
-            messages.info(request, "Data Already Present!")
-        # return render(request, "home.html")
     names = NamesPlace.objects.all()
     imges = ImgPlace.objects.all()
     return render(request,"home.html", {'names': names, 'imges': imges})
