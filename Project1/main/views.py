@@ -72,8 +72,17 @@ def place(request):
         # print(im)
         # print(name.type())
         # print(user.type())
-        places = NamesPlace(names=name)
-        # img_place = ImgPlace.objects.create(person=user, img=im, place=name)
-        places.save()
-        messages.info(request, "Data Saved Successfully!")
+        all_places = NamesPlace.objects.all()
+        k = 0
+        for place in all_places:
+            if(place.names == name):
+                print(place.names)
+                k = 1
+                break
+        if(k==0):
+            places = NamesPlace(names=name)
+            places.save()
+            messages.info(request, "Data Saved Successfully!")
+        else:
+            messages.info(request, "Data Already Present!")
     return redirect("/persius")
