@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import ImgPlace, NamesPlace
 
-# Register your models here.
+admin.site.register(ImgPlace)
+admin.site.register(NamesPlace)

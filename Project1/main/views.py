@@ -68,10 +68,14 @@ def place(request):
         print(request.FILES)
         im = request.FILES['image']
         name = request.POST['place_name']
-        # user = request.user.username
-        # print(im)
-        # print(name.type())
-        # print(user.type())
+        user = request.user.username
+        uu = User.objects.all()
+        for u in uu:
+            print(u.username)
+
+
+
+
         all_places = NamesPlace.objects.all()
         k = 0
         for place in all_places:
