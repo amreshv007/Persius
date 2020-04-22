@@ -40,9 +40,10 @@
         {% endfor %}
     </div>
 {% endif %}
-    {% if uploaded_file_url %}
-    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-  {% endif %}
+<!--    {% if uploaded_file_url %}-->
+<!--    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>-->
+<!--    <p><img src="{{ uploaded_file_url }}"></p>-->
+<!--  {% endif %}-->
 
     <div class="col-xs-4 form-group">
         <h3>Place Names</h3>
@@ -52,9 +53,9 @@
     </div>
     <div class="col-xs-8 form-group">
         <h3>Images</h3>
-<!--        {% for im in imges %}-->
-<!--            <p><img src="{{im.img.url}}"></p>-->
-<!--        {% endfor %}-->
+        {% for im in imges %}
+            <p><img src="{{im.image_url}}"></p>
+        {% endfor %}
     </div>
 </div>
 </body>

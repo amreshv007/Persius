@@ -4,6 +4,7 @@ from django.db import models
 class ImgPlace(models.Model):
     img = models.ImageField(null=True, blank=True, upload_to ='uploads/'),
     place = models.CharField(max_length=255, default='')
+    image_url = models.URLField(max_length=200, default='')
 
     def __str__(self):
         return self.place

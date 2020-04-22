@@ -15,7 +15,8 @@ def index(request):
         filename = fs.save(im.name, im)
         uploaded_file_url = fs.url(filename)
         name = request.POST['place_name']
-        user = request.user.username
+        image_place = ImgPlace(place = name, image_url = uploaded_file_url)
+        image_place.save()
         uu = User.objects.all()
         for u in uu:
             print(u.username)
@@ -32,7 +33,7 @@ def index(request):
             messages.info(request, "Data Saved Successfully!")
         else:
             messages.info(request, "Data Already Present!")
-        return render(request, "home.html", {'uploaded_file_url': uploaded_file_url})
+        # return render(request, "home.html")
     names = NamesPlace.objects.all()
     imges = ImgPlace.objects.all()
     return render(request,"home.html", {'names': names, 'imges': imges})
