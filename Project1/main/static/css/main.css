@@ -121,6 +121,27 @@ body {
   background-image: -webkit-linear-gradient(to left, #74ebd5, #9face6);
   background-image: linear-gradient(to left, #74ebd5, #9face6); }
 
+.main{
+  margin: 25px;
+}
+.img{
+  height: 200px;
+  width: 200px;
+}
+.imggrid{
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.post-type{
+  width: 17%;
+  margin: 10px;
+  display: inline-block;
+  border: 1px solid black;
+}
+.name{
+  padding: 5px;
+}
+
 @media screen and (max-width: 500px) {
   .header a {
     float: none;
