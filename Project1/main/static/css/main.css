@@ -140,6 +140,13 @@ body {
 }
 .name{
   padding: 5px;
+  font-size: 14px;
+}
+.heading{
+  color: #6957ce;
+}
+.in{
+  color: #ee0ffd;
 }
 
 @media screen and (max-width: 500px) {

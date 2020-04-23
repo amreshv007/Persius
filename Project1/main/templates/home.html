@@ -51,10 +51,12 @@
                         <img class="img" src="{{im.image_url}}">
                     </div>
                     <div class="name">
-                        <span>Place : {{im.place}}</span>
+                        <span class="heading">Place : </span>
+                        <span class="in">{{im.place}}</span>
                     </div>
                     <div class="name">
-                        <span>Uploaded By : 
+                        <span class="heading">Uploaded By : </span>
+                        <span class="in">
                             {% if  im.user %}
                             {{im.user.first_name}}
                             {% else %}
