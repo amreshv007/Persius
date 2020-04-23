@@ -64,6 +64,29 @@
                             {% endif %}
                         </span>
                     </div>
+                    <div class="name">
+                        <span class="heading">Detected By : </span>
+                        <span class="in">
+                            {% if  im.guess_by %}
+                                {{im.guess_by}}
+                            {% else %}
+                                No One
+                            {% endif %}
+                        </span>
+                    </div>
+                    <div>
+                        <form method="POST" action="/persius/place">
+                            {% csrf_token %}
+                          <select name="agent_id" required>
+                            <option value="1">Select</option>
+                              {% for name in Places %}
+                                <option value="{{name.names}}">{{name.names}}</option>
+                              {% endfor %}
+                          </select>
+                            <input type="text" value="{{im.image_url}}" name="url" hidden />
+                          <input type="submit" value="Submit">
+                        </form>
+                    </div>
                 </div>
             {% endfor %}
         </div>

@@ -34,7 +34,7 @@ def index(request):
             messages.info(request, "Data Saved Successfully!")
     names = NamesPlace.objects.all()
     imges = ImgPlace.objects.all()
-    return render(request,"home.html", {'names': names, 'imges': imges})
+    return render(request,"home.html", {'Places': names, 'imges': imges, 'i': 6})
 
 def login(request):
     context = {}
@@ -88,35 +88,18 @@ def logout(request):
     auth.logout(request)
     return redirect("/persius/")
 
-# @login_required
-# def place(request):
-#     if request.method == "POST" and request.FILES['image']:
-#         print("===================")
-#         # print(request.FILES)
-#         im = request.FILES['image']
-#         fs = FileSystemStorage()
-#         filename = fs.save(im.name, im)
-#         uploaded_file_url = fs.url(filename)
-#         name = request.POST['place_name']
-#         user = request.user.username
-#         uu = User.objects.all()
-#         for u in uu:
-#             print(u.username)
-#
-#
-#
-#
-#         all_places = NamesPlace.objects.all()
-#         k = 0
-#         for place in all_places:
-#             if(place.names == name):
-#                 print(place.names)
-#                 k = 1
-#                 break
-#         if(k==0):
-#             places = NamesPlace(names=name)
-#             places.save()
-#             messages.info(request, "Data Saved Successfully!")
-#         else:
-#             messages.info(request, "Data Already Present!")
-#     return redirect("/persius")
+@login_required(login_url='/persius/login')
+def place(request):
+    if request.method == "POST":
+        select_place = request.POST['agent_id']
+        url = request.POST['url']
+        print('url=', url)
+        print('select_place=', select_place)
+        print(request.user.username)
+        Img_place = ImgPlace.objects.get(image_url=url)
+        if Img_place.place == select_place:
+            if Img_place.guess_by == "":
+                Img_place.guess_by = request.user.first_name
+                Img_place.save()
+        print(Img_place.guess_by)
+    return redirect("/persius")
