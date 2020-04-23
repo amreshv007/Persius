@@ -10,16 +10,17 @@ def index(request):
     if request.method == "POST" and request.FILES['image']:
         print("===================")
         # print(request.FILES)
+        username = request.user.username
+        print('user=', username)
+        user1 = User.objects.get(username=username)
+        print('user1=', user1)
         im = request.FILES['image']
         fs = FileSystemStorage()
         filename = fs.save(im.name, im)
         uploaded_file_url = fs.url(filename)
         name = request.POST['place_name']
-        image_place = ImgPlace(place = name, image_url = uploaded_file_url)
+        image_place = ImgPlace(user=user1, place=name, image_url=uploaded_file_url)
         image_place.save()
-        uu = User.objects.all()
-        for u in uu:
-            print(u.username)
         all_places = NamesPlace.objects.all()
         k = 0
         for place in all_places:
