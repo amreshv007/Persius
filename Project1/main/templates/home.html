@@ -68,13 +68,13 @@
                         <span class="heading">Detected By : </span>
                         <span class="in">
                             {% if  im.guess_by %}
-                                {{im.guess_by}}
+                            <span style="color:green;font-weight: 700">{{im.guess_by}}</span>
                             {% else %}
-                                No One
+                            <span style="color:black">No One</span>
                             {% endif %}
                         </span>
                     </div>
-                    <div>
+                    <div class="submit">
                         <form method="POST" action="/persius/place">
                             {% csrf_token %}
                           <select name="agent_id" required>
