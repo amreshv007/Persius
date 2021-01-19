@@ -42,7 +42,7 @@ def login(request):
         username = request.POST["username"]
         password = request.POST["password"]
         user = auth.authenticate(username=username,password=password)
-        print(user)
+        print(user,"ssss")
         if user is not None:
             auth.login(request,user)
             return redirect("/persius")
@@ -84,6 +84,7 @@ def signup(request):
         else:
             return render(request,"signup.html",context)
 
+@login_required(login_url='/persius/login')
 def logout(request):
     auth.logout(request)
     return redirect("/persius/")
